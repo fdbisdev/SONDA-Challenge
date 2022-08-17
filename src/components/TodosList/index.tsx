@@ -12,7 +12,7 @@ const TodosList = ({ todos, completed = false }: ITodoList) => {
 
 
   return (
-    <Container>
+    <Container style={{ width: '30%' }}>
       <ListTitle>{completed ? 'Completo' : 'Incompleto'}</ListTitle>
       <FlatList
         style={{ width: '100%', padding: 10 }}

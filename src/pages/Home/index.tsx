@@ -10,11 +10,28 @@ const Home: React.FC = () => {
   const [completed, setCompleted] = React.useState<ITodos[]>([]);
   const [notCompleted, setNotCompleted] = React.useState<ITodos[]>([]);
   const [searched, setSearched] = React.useState(false);
+  const [search, setSearch] = React.useState('');
+  const [auxTodos, setAuxTodos] = React.useState<ITodos[]>([]);
 
   const getTodoList = async () => {
     const todosList = await getTodos();
     setTodos(todosList);
     separeteCompleted(todosList);
+  }
+
+  const handleSearch = () => {
+    setSearched(true);
+    const filteredTodos: ITodos[] = []
+    todos.map((todo: ITodos) => {
+
+      if (todo.title.includes(search)) {
+        filteredTodos.push(todo);
+      }
+
+    })
+
+    setAuxTodos(filteredTodos);
+
   }
 
   const separeteCompleted = (todos: ITodos[]) => {
@@ -47,7 +64,7 @@ const Home: React.FC = () => {
           )
             :
             (
-              <TodosList todos={todos} />
+              <TodosList todos={auxTodos} />
             )
         }
       </>
@@ -57,7 +74,12 @@ const Home: React.FC = () => {
   const TodoList = () => {
 
     return (
-      <ScrollView>
+      <ScrollView
+        style={{ width: '100%', padding: 10 }}
+        showsHorizontalScrollIndicator={false}
+        alwaysBounceHorizontal={false}
+        horizontal
+      >
         <TodosList todos={completed} completed={true} />
         <TodosList todos={notCompleted} />
       </ScrollView>
@@ -70,8 +92,9 @@ const Home: React.FC = () => {
       <TextWrapper>
         <InputSearch
           placeholder="Digite o título do todo"
+          onChangeText={setSearch}
         />
-        <ButtonSearch>
+        <ButtonSearch onPress={handleSearch}>
           <SearchIcon name='search' />
         </ButtonSearch>
       </TextWrapper>
