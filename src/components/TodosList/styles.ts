@@ -5,4 +5,8 @@ export const Container = styled.View`
     align-items: center;
 `;
 
-export const ListTitle = styled.Text``;
+export const ListTitle = styled.Text`
+    font-size: 20px;
+    color: #444;
+    font-weight: bold;
+`;

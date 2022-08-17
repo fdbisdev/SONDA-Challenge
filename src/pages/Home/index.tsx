@@ -3,6 +3,7 @@ import TodosList from '../../components/TodosList';
 import { Title, Container, TextWrapper, InputSearch, SearchIcon, ButtonSearch } from './styles';
 import getTodos from '../../services/api';
 import { ITodos } from 'src/utils/types';
+import { ScrollView } from 'react-native';
 
 const Home: React.FC = () => {
   const [todos, setTodos] = React.useState<ITodos[]>([]);
@@ -56,10 +57,10 @@ const Home: React.FC = () => {
   const TodoList = () => {
 
     return (
-      <>
+      <ScrollView>
         <TodosList todos={completed} completed={true} />
         <TodosList todos={notCompleted} />
-      </>
+      </ScrollView>
     )
   }
 

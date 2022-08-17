@@ -14,6 +14,7 @@ const TodosList = ({ todos, completed = false }: ITodoList) => {
     <Container>
       <ListTitle>{completed ? 'Completo' : 'Incompleto'}</ListTitle>
       <FlatList
+        style={{ width: '100%', padding: 10 }}
         data={todos}
         keyExtractor={(item) => String(item.id)}
         renderItem={renderTodosItem}
