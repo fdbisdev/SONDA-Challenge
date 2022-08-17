@@ -2,11 +2,12 @@ import React from 'react';
 import { FlatList, Text } from 'react-native';
 import { ITodoList, ITodos } from 'src/utils/types';
 import { Container, ListTitle } from './styles';
+import TodoElement from './TodoElement';
 
 const TodosList = ({ todos, completed = false }: ITodoList) => {
 
   const renderTodosItem = ({ item }: { item: ITodos }) => (
-    <Text>{item.title}</Text>
+    <TodoElement item={item} />
   );
 
 
