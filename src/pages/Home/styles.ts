@@ -40,3 +40,10 @@ export const SearchIcon = styled(FA5Icon)`
 `;
 
 
+export const Title = styled.Text`
+    font-size: 20px;
+    color: #444;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+`;

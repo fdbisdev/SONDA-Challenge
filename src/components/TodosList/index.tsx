@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
-import getTodos from '../../services/api';
-import { Container } from './styles';
+import React from 'react';
+import { FlatList, Text } from 'react-native';
+import { ITodoList, ITodos } from 'src/utils/types';
+import { Container, ListTitle } from './styles';
 
-const TodosList: React.FC = () => {
-  const [todos, setTodos] = React.useState([]);
+const TodosList = ({ todos, completed = false }: ITodoList) => {
 
-  const getTodoList = async () => {
-    const todosList = await getTodos();
-    setTodos(todosList);
-  }
-
-  useEffect(() => {
-    getTodoList();
-  }, []);
+  const renderTodosItem = ({ item }: { item: ITodos }) => (
+    <Text>{item.title}</Text>
+  );
 
 
   return (
     <Container>
-      <Text>List</Text>
+      <ListTitle>{completed ? 'Completo' : 'Incompleto'}</ListTitle>
+      <FlatList
+        data={todos}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={renderTodosItem}
+      />
     </Container>
   )
 }
